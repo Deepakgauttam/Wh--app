@@ -26,6 +26,7 @@ export default function SidebarChat({ addNewChat, name, id }) {
     }
   }, [id]);
   //console.log(name, id);
+
   const createChat = async () => {
     const group = prompt("Please enter your group name");
     if (group) {

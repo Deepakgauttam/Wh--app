@@ -109,7 +109,7 @@ export default function Chat({ userName }) {
           </p>
         ))}
       </div>
-      {/* -------------------------chat footer------------------------- */}
+      {/* -------------------------chat footer------------------------ */}
       <div className="chatFooter">
         <span className="material-symbols-outlined">mood</span>
         <form
