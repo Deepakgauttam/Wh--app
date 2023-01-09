@@ -6,13 +6,13 @@ import SidebarChat from "./SidebarChat";
 // import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 import { LoginContext } from "./LoginContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar({ userName }) {
   const [group, setGroup] = useState([]);
   const { setUserLogin, setUserName } = useContext(LoginContext);
 
-  // const history = useHistory();
+  const Navigate = useNavigate();
 
   const getGroups = async () => {
     const getData = onSnapshot(collection(db, "groups"), (snapshot) => {
@@ -37,7 +37,7 @@ function Sidebar({ userName }) {
         // toast.success("Logout successful");
         setUserLogin(false);
         setUserName("");
-        <Navigate to="/" />;
+        Navigate("/");
       })
       .catch((error) => {
         // toast.error(error.message);
@@ -75,7 +75,7 @@ function Sidebar({ userName }) {
       </div>
       {/* ---------------------------Sidebar chats--------------------- */}
       <div className="sidebarChats">
-        <SidebarChat addNewChat  userLogin={setUserLogin}/>
+        <SidebarChat addNewChat userLogin={setUserLogin} />
         {group.map((group) => {
           return <SidebarChat key={group.id} name={group.name} id={group.id} />;
         })}
