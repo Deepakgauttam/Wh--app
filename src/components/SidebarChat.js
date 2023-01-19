@@ -56,7 +56,7 @@ export default function SidebarChat({ addNewChat, name, id }) {
     </Link>
   ) : (
     <div onClick={createChat} className="sidebarChat">
-      <h3>Add New Chat</h3>
+      <h2>Add New Chat</h2>
     </div>
   );
 }

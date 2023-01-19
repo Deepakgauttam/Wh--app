@@ -8,9 +8,7 @@ img {
   width: 40px;
   object-fit: contain;
 }
-.material-symbols-outlined {
-  font-size: 28px;
-}
+
 .sidebarHeader {
   display: flex;
   justify-content: space-between;
