@@ -16,7 +16,8 @@ body {
   color: white;
 } */
 .form {
-  width: 400px;
+  /* width: 400px; */
+  width: 300px;
   border-radius: 5px;
   background-color: #dfdfe9;
   /* height:fit-content;  */

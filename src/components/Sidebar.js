@@ -9,9 +9,12 @@ import { LoginContext } from "./LoginContext";
 import { useNavigate } from "react-router-dom";
 
 function Sidebar({ userName }) {
+  //deep
   const [group, setGroup] = useState([]);
   const { setUserLogin, setUserName } = useContext(LoginContext);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  console.log("my user name is" + setUserLogin);
   const Navigate = useNavigate();
 
   const getGroups = async () => {
@@ -33,17 +36,23 @@ function Sidebar({ userName }) {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        console.log("Logout");
         // toast.success("Logout successful");
         setUserLogin(false);
         setUserName("");
-        Navigate("/");
+        Navigate("/login");
       })
       .catch((error) => {
         // toast.error(error.message);
       });
   };
+  const filteredGroups = group.filter((g) =>
+    g.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
+  const myStyle = {
+    marginTop: "10px",
+    width: "83%",
+  };
   return (
     <div className="sidebar">
       {/*--------------------------- Header------------------------- */}
@@ -70,15 +79,30 @@ function Sidebar({ userName }) {
       <div className="sidebarSearch">
         <div className="sidebarSearchContainer">
           <span className="material-symbols-outlined">search</span>
-          <input type="text" placeholder="Search contact" />
+          <input
+            type="text"
+            placeholder="Search contact"
+            style={myStyle}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
       </div>
+
       {/* ---------------------------Sidebar chats--------------------- */}
       <div className="sidebarChats">
         <SidebarChat addNewChat userLogin={setUserLogin} />
-        {group.map((group) => {
+        {filteredGroups.length > 0 ? (
+          filteredGroups.map((group) => {
+            return (
+              <SidebarChat key={group.id} name={group.name} id={group.id} />
+            );
+          })
+        ) : (
+          <p>No groups found</p>
+        )}
+        {/* {group.map((group) => {
           return <SidebarChat key={group.id} name={group.name} id={group.id} />;
-        })}
+        })} */}
       </div>
     </div>
   );

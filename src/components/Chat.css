@@ -74,3 +74,8 @@ form input {
   border-radius: 30px;
   padding: 5px;
 }
+.chatHeaderRight_search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

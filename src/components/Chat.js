@@ -18,6 +18,8 @@ export default function Chat({ userName }) {
   const [groupName, setGroupName] = useState();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+  const [searchMessage, setSearchMessage] = useState("");
+  
 
   useEffect(() => {
     console.log(groupId);
@@ -122,7 +124,7 @@ export default function Chat({ userName }) {
             onChange={(e) => {
               setInput(e.target.value);
             }}
-            type="text"
+            type="text" style={{marginTop: "10px"}}
             placeholder="Type a message"
           />
           <button type="submit" style={{ border: "none" }}>
